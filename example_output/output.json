@@ -1,324 +1,317 @@
 {
-    "openstack": [
-        {
-            "url": "https://github.com/openstack/openstack",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "Python": "100.0%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/JiYou/openstack",
-            "extra": {
-                "owner": "JiYou",
-                "language_stats": {
-                    "Python": "92.9%",
-                    "JavaScript": "2.5%",
-                    "Smarty": "1.3%",
-                    "Shell": "1.3%",
-                    "HTML": "0.8%",
-                    "CSS": "0.7%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/ContainX/openstack4j",
-            "extra": {
-                "owner": "ContainX",
-                "language_stats": {
-                    "Java": "97.0%",
-                    "Groovy": "3.0%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/openstack/openstack-ansible",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "Python": "61.4%",
-                    "Shell": "26.8%",
-                    "Jinja": "11.7%",
-                    "Smarty": "0.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/php-opencloud/openstack",
-            "extra": {
-                "owner": "php-opencloud",
-                "language_stats": {
-                    "PHP": "99.9%",
-                    "Shell": "0.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/kubernetes/cloud-provider-openstack",
-            "extra": {
-                "owner": "kubernetes",
-                "language_stats": {
-                    "Go": "91.7%",
-                    "Shell": "5.2%",
-                    "Mustache": "0.8%",
-                    "Dockerfile": "0.7%",
-                    "Makefile": "0.6%",
-                    "Jinja": "0.5%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/terraform-provider-openstack/terraform-provider-openstack",
-            "extra": {
-                "owner": "terraform-provider-openstack",
-                "language_stats": {
-                    "Go": "99.6%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/openstack/openstack-helm",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "Shell": "84.7%",
-                    "Python": "11.8%",
-                    "Smarty": "2.8%",
-                    "Makefile": "0.7%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/openstack/openstack-manuals",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "HTML": "77.7%",
-                    "CSS": "12.6%",
-                    "Python": "4.9%",
-                    "JavaScript": "3.4%",
-                    "Shell": "1.4%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/openstack/openstacksdk",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "Python": "99.9%"
-                }
-            }
+  "openstack": [
+    {
+      "url": "https://github.com/openstack/openstack",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "Python": "100.0%"
         }
-    ],
-    "nova": [
-        {
-            "url": "https://github.com/openstack/nova",
-            "extra": {
-                "owner": "openstack",
-                "language_stats": {
-                    "Python": "97.6%",
-                    "Smarty": "2.3%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/novatorem/novatorem",
-            "extra": {
-                "owner": "novatorem",
-                "language_stats": {
-                    "Jinja": "50.6%",
-                    "Python": "48.6%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/microsoft/Nova",
-            "extra": {
-                "owner": "microsoft",
-                "language_stats": {
-                    "Rust": "100.0%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/udosteinberg/NOVA",
-            "extra": {
-                "owner": "udosteinberg",
-                "language_stats": {
-                    "C++": "95.5%",
-                    "Assembly": "4.0%",
-                    "Makefile": "0.5%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/Lunatic-Works/Nova",
-            "extra": {
-                "owner": "Lunatic-Works",
-                "language_stats": {
-                    "C#": "55.2%",
-                    "ShaderLab": "24.1%",
-                    "Lua": "14.7%",
-                    "Python": "4.7%",
-                    "HLSL": "1.2%",
-                    "Batchfile": "0.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/Tamicer/Novate",
-            "extra": {
-                "owner": "Tamicer",
-                "language_stats": {
-                    "Java": "100.0%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/CyberAgentGameEntertainment/NovaShader",
-            "extra": {
-                "owner": "CyberAgentGameEntertainment",
-                "language_stats": {
-                    "C#": "75.7%",
-                    "ShaderLab": "12.5%",
-                    "HLSL": "11.8%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/int32bit/openstack-workflow",
-            "extra": {
-                "owner": "int32bit",
-                "language_stats": {
-                    "Python": "91.7%",
-                    "Shell": "6.2%",
-                    "Makefile": "2.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/novacoin-project/novacoin",
-            "extra": {
-                "owner": "novacoin-project",
-                "language_stats": {
-                    "C++": "82.4%",
-                    "C": "11.9%",
-                    "HTML": "1.6%",
-                    "Python": "1.5%",
-                    "CMake": "0.8%",
-                    "Shell": "0.5%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/trynova/nova",
-            "extra": {
-                "owner": "trynova",
-                "language_stats": {
-                    "Rust": "99.9%",
-                    "JavaScript": "0.1%"
-                }
-            }
+      }
+    },
+    {
+      "url": "https://github.com/JiYou/openstack",
+      "extra": {
+        "owner": "JiYou",
+        "language_stats": {
+          "Python": "92.9%",
+          "JavaScript": "2.5%",
+          "Smarty": "1.3%",
+          "Shell": "1.3%",
+          "HTML": "0.8%",
+          "CSS": "0.7%"
         }
-    ],
-    "css": [
-        {
-            "url": "https://github.com/primer/css",
-            "extra": {
-                "owner": "primer",
-                "language_stats": {
-                    "SCSS": "88.2%",
-                    "JavaScript": "9.7%",
-                    "Shell": "2.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/airbnb/css",
-            "extra": {
-                "owner": "airbnb",
-                "language_stats": {}
-            }
-        },
-        {
-            "url": "https://github.com/hakimel/css",
-            "extra": {
-                "owner": "hakimel",
-                "language_stats": {
-                    "HTML": "44.9%",
-                    "CSS": "44.5%",
-                    "JavaScript": "10.6%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/animate-css/animate.css",
-            "extra": {
-                "owner": "animate-css",
-                "language_stats": {
-                    "CSS": "67.8%",
-                    "HTML": "20.6%",
-                    "JavaScript": "11.5%",
-                    "Shell": "0.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/TheOdinProject/css-exercises",
-            "extra": {
-                "owner": "TheOdinProject",
-                "language_stats": {
-                    "HTML": "62.0%",
-                    "CSS": "34.9%",
-                    "JavaScript": "3.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/reworkcss/css",
-            "extra": {
-                "owner": "reworkcss",
-                "language_stats": {
-                    "CSS": "90.9%",
-                    "JavaScript": "9.1%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/necolas/normalize.css",
-            "extra": {
-                "owner": "necolas",
-                "language_stats": {
-                    "CSS": "100.0%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/bevacqua/css",
-            "extra": {
-                "owner": "bevacqua",
-                "language_stats": {}
-            }
-        },
-        {
-            "url": "https://github.com/gustavoguanabara/html-css",
-            "extra": {
-                "owner": "gustavoguanabara",
-                "language_stats": {
-                    "HTML": "98.4%",
-                    "CSS": "1.6%"
-                }
-            }
-        },
-        {
-            "url": "https://github.com/AllThingsSmitty/css-protips",
-            "extra": {
-                "owner": "AllThingsSmitty",
-                "language_stats": {}
-            }
+      }
+    },
+    {
+      "url": "https://github.com/ContainX/openstack4j",
+      "extra": {
+        "owner": "ContainX",
+        "language_stats": {
+          "Java": "97.0%",
+          "Groovy": "3.0%"
         }
-    ]
+      }
+    },
+    {
+      "url": "https://github.com/openstack/openstack-ansible",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "Python": "61.4%",
+          "Shell": "26.8%",
+          "Jinja": "11.7%",
+          "Smarty": "0.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/php-opencloud/openstack",
+      "extra": {
+        "owner": "php-opencloud",
+        "language_stats": {
+          "PHP": "99.9%",
+          "Shell": "0.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/kubernetes/cloud-provider-openstack",
+      "extra": {
+        "owner": "kubernetes",
+        "language_stats": {
+          "Go": "91.7%",
+          "Shell": "5.2%",
+          "Mustache": "0.8%",
+          "Dockerfile": "0.7%",
+          "Makefile": "0.6%",
+          "Jinja": "0.5%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/openstack/openstack-helm",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "Shell": "84.7%",
+          "Python": "11.8%",
+          "Smarty": "2.8%",
+          "Makefile": "0.7%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/terraform-provider-openstack/terraform-provider-openstack",
+      "extra": {
+        "owner": "terraform-provider-openstack",
+        "language_stats": {
+          "Go": "99.6%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/openstack/openstack-manuals",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "HTML": "77.7%",
+          "CSS": "12.6%",
+          "Python": "4.9%",
+          "JavaScript": "3.4%",
+          "Shell": "1.4%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/openstack/openstacksdk",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "Python": "99.9%"
+        }
+      }
+    }
+  ],
+  "nova": [
+    {
+      "url": "https://github.com/openstack/nova",
+      "extra": {
+        "owner": "openstack",
+        "language_stats": {
+          "Python": "97.6%",
+          "Smarty": "2.3%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/novatorem/novatorem",
+      "extra": {
+        "owner": "novatorem",
+        "language_stats": {
+          "Jinja": "50.6%",
+          "Python": "48.6%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/microsoft/Nova",
+      "extra": {
+        "owner": "microsoft",
+        "language_stats": {
+          "Rust": "100.0%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/udosteinberg/NOVA",
+      "extra": {
+        "owner": "udosteinberg",
+        "language_stats": {
+          "C++": "95.4%",
+          "Assembly": "4.1%",
+          "Makefile": "0.5%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/Lunatic-Works/Nova",
+      "extra": {
+        "owner": "Lunatic-Works",
+        "language_stats": {
+          "C#": "55.2%",
+          "ShaderLab": "24.1%",
+          "Lua": "14.7%",
+          "Python": "4.7%",
+          "HLSL": "1.2%",
+          "Batchfile": "0.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/Tamicer/Novate",
+      "extra": {
+        "owner": "Tamicer",
+        "language_stats": {
+          "Java": "100.0%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/CyberAgentGameEntertainment/NovaShader",
+      "extra": {
+        "owner": "CyberAgentGameEntertainment",
+        "language_stats": {
+          "C#": "75.7%",
+          "ShaderLab": "12.5%",
+          "HLSL": "11.8%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/int32bit/openstack-workflow",
+      "extra": {
+        "owner": "int32bit",
+        "language_stats": {
+          "Python": "91.7%",
+          "Shell": "6.2%",
+          "Makefile": "2.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/trynova/nova",
+      "extra": {
+        "owner": "trynova",
+        "language_stats": {
+          "Rust": "99.9%",
+          "JavaScript": "0.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/NovaSector/NovaSector",
+      "extra": {
+        "owner": "NovaSector",
+        "language_stats": {}
+      }
+    }
+  ],
+  "css": [
+    {
+      "url": "https://github.com/primer/css",
+      "extra": {
+        "owner": "primer",
+        "language_stats": {
+          "SCSS": "88.2%",
+          "JavaScript": "9.7%",
+          "Shell": "2.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/airbnb/css",
+      "extra": {
+        "owner": "airbnb",
+        "language_stats": {}
+      }
+    },
+    {
+      "url": "https://github.com/hakimel/css",
+      "extra": {
+        "owner": "hakimel",
+        "language_stats": {
+          "HTML": "44.9%",
+          "CSS": "44.5%",
+          "JavaScript": "10.6%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/animate-css/animate.css",
+      "extra": {
+        "owner": "animate-css",
+        "language_stats": {
+          "CSS": "67.8%",
+          "HTML": "20.6%",
+          "JavaScript": "11.5%",
+          "Shell": "0.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/TheOdinProject/css-exercises",
+      "extra": {
+        "owner": "TheOdinProject",
+        "language_stats": {
+          "HTML": "62.0%",
+          "CSS": "34.9%",
+          "JavaScript": "3.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/reworkcss/css",
+      "extra": {
+        "owner": "reworkcss",
+        "language_stats": {
+          "CSS": "90.9%",
+          "JavaScript": "9.1%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/necolas/normalize.css",
+      "extra": {
+        "owner": "necolas",
+        "language_stats": {
+          "CSS": "100.0%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/bevacqua/css",
+      "extra": {
+        "owner": "bevacqua",
+        "language_stats": {}
+      }
+    },
+    {
+      "url": "https://github.com/gustavoguanabara/html-css",
+      "extra": {
+        "owner": "gustavoguanabara",
+        "language_stats": {
+          "HTML": "98.4%",
+          "CSS": "1.6%"
+        }
+      }
+    },
+    {
+      "url": "https://github.com/AllThingsSmitty/css-protips",
+      "extra": {
+        "owner": "AllThingsSmitty",
+        "language_stats": {}
+      }
+    }
+  ]
 }

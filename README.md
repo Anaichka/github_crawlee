@@ -12,7 +12,6 @@ GitHub Crawlee is an asynchronous Python scraper that fetches GitHub repositorie
 
 - Optionally fetches additional repository details (owner, language statistics)
 
-- Caches gathered proxies for efficiency
 
 ## Project Structure
 ```
@@ -22,10 +21,6 @@ github_crawlee/
 ├── github_crawlee/
 │   ├── main.py
 ├── tests/
-│   ├── test_inputs/
-│   │   ├── test_input_dict.json
-│   │   ├── test_input_empty.json
-│   │   ├── test_input_list.json
 │   ├── tests.py
 ├── input.json
 ├── LICENSE
@@ -53,11 +48,17 @@ Prepare an input.json file with the following structure:
         "nova",
         "css"
     ],
+    "proxies": [
+    "194.126.37.94:8080",
+    "13.78.125.167:8080"
+    ],
     "type": "Repositories",
     "extra": true
 }
 ```
 - ```keywords```: List of search terms.
+
+- ```proxies```: List of prepared proxies.
 
 - ```type```: Type of search (Repositories, Issues, etc.).
 
@@ -89,9 +90,8 @@ The output will be saved in ```output.json```.
 ```
 ## Proxy Handling
 
-- If proxies are enabled, the script fetches a fresh proxy list from ```https://free-proxy-list.net/```.
+- If proxies are absent or don't work, the script fetches a fresh proxy list from ```https://free-proxy-list.net/```.
 
-- Cached proxies are used to avoid unnecessary re-fetching.
 
 ## Running Tests
 

@@ -1,103 +1,97 @@
+import re
 import pytest
-from unittest.mock import patch, mock_open, MagicMock, AsyncMock
-from aioresponses import aioresponses
-import json
 import aiohttp
+from unittest.mock import AsyncMock, patch, mock_open
+from aioresponses import aioresponses
 from github_crawlee.main import (
-    main,
-    process_input,
-    fetch_data,
-    gather_proxies,
-    prepare_request,
-    PROXY_RESOURCE,
+    load_input, validate_proxy, get_valid_proxies,
+    gather_proxies, fetch_data, process_keywords
 )
 
 
-# Test data
-mock_keywords = ["python", "aiohttp", "github"]
-mock_search_type = "repository"
-mock_extra = False
-mock_repo_response = {
-    "python": [
-        {"url": "https://github.com/python/cpython"},
-        {"url": "https://github.com/python/python"},
-    ],
-    "aiohttp": [{"url": "https://github.com/aio-libs/aiohttp"}],
-}
+@pytest.mark.asyncio
+async def test_load_input():
+    valid_json = '{"keywords": ["test"], "type": "Repositories", "extra": true}'
+    with patch("builtins.open", mock_open(read_data=valid_json)):
+        result = await load_input("input.json")
+        assert result == {"keywords": ["test"], "type": "Repositories", "extra": True}
+
+
+    with patch("builtins.open", mock_open(read_data="{invalid_json}")):
+        result = await load_input("input.json")
+        assert result == {}  
 
 
 @pytest.mark.asyncio
-async def test_process_input_list():
-    mock_fetch_data_result = [
-        "https://github.com/python/cpython",
-        "https://github.com/aiohttp/aiohttp",
-    ]
+async def test_validate_proxy():
+    with aioresponses() as mock_resp:
+        mock_resp.get("https://httpbin.org/ip", status=200)
+        assert await validate_proxy("192.168.1.1:8080") is True
 
-    with patch("github_crawlee.main.fetch_data", return_value=mock_fetch_data_result):
-        result = await process_input("tests/test_inputs/test_input_list.json")
-
-        assert isinstance(result, list), f"Expected list, but got {type(result)}"
-        assert result == mock_fetch_data_result, (
-            f"Expected {mock_fetch_data_result}, but got {result}"
-        )
+        mock_resp.get("https://httpbin.org/ip", status=500)
+        assert await validate_proxy("192.168.1.1:8080") is False
 
 
 @pytest.mark.asyncio
-async def test_process_input_dict():
-    mock_fetch_data_result = ["https://github.com/python/cpython"]
-
-    with patch("github_crawlee.main.fetch_data", return_value=mock_fetch_data_result):
-        result = await process_input("tests/test_inputs/test_input_dict.json")
-
-        assert isinstance(result, list), f"Expected list, but got {type(result)}"
-        assert result == mock_fetch_data_result, (
-            f"Expected {mock_fetch_data_result}, but got {result}"
-        )
-
-
-@pytest.mark.asyncio
-async def test_process_input_empty_or_txt():
-    result = await process_input("tests/test_inputs/test_input_empty.json")
-
-    assert result is None, f"Expected None or error handling, but got {result}"
+async def test_get_valid_proxies():
+    with patch("github_crawlee.main.validate_proxy", side_effect=[True, False, True]):
+        proxies = ["192.168.1.1:8080", "192.168.1.2:8080", "192.168.1.3:8080"]
+        valid_proxies = await get_valid_proxies(proxies)
+        assert valid_proxies == ["192.168.1.1:8080", "192.168.1.3:8080"]
 
 
 @pytest.mark.asyncio
 async def test_gather_proxies():
-    with aioresponses() as m:
-        m.get(PROXY_RESOURCE, payload="<html>...</html>")
-
+    proxy_page_html = "192.168.1.1:8080\n192.168.1.2:8080\n"
+    with aioresponses() as mock_resp:
+        mock_resp.get("https://free-proxy-list.net/", status=200, body=proxy_page_html)
         proxies = await gather_proxies()
-        assert proxies is not None
-        assert "http" in proxies
-        assert "https" in proxies
+        assert "192.168.1.1:8080" in proxies
+        assert "192.168.1.2:8080" in proxies
 
 
 @pytest.mark.asyncio
-async def test_prepare_request():
-    use_proxy = True
-    with patch(
-        "github_crawlee.main.gather_proxies",
-        return_value={"http": ["http://proxy1"], "https": ["https://proxy1"]},
-    ):
-        session = await prepare_request(use_proxy=use_proxy)
-        assert isinstance(session, aiohttp.ClientSession)
+async def test_fetch_data():
+    html_response = '{"hl_name":"repo1"}{"hl_name":"repo2"}'
+    repo_page = '<a data-ga-click="Repository, language stats search click, location:repo overview"></a>'
+
+    with aioresponses() as mock_resp:
+        mock_resp.get(re.compile(r"https://github.com/search.*"), status=200, body=html_response)
+
+        mock_resp.get("https://github.com/repo1", status=200, body=repo_page)
+        mock_resp.get("https://github.com/repo2", status=200, body=repo_page)
+
+        async with aiohttp.ClientSession() as session:
+            result = await fetch_data(session, "test", "Repositories", extra=True)
+
+    assert "test" in result
+    assert len(result["test"]) == 2
+
+
+@pytest.mark.asyncio
+async def test_process_keywords():
+    with patch("github_crawlee.main.fetch_data", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [
+            {"keyword1": [{"url": "https://github.com/repo1"}]},
+            {"keyword2": [{"url": "https://github.com/repo2"}]},
+        ]
+        result = await process_keywords(["keyword1", "keyword2"], "Repositories", False, [])
+
+    assert "keyword1" in result
+    assert "keyword2" in result
+    assert result["keyword1"][0]["url"] == "https://github.com/repo1"
 
 
 @pytest.mark.asyncio
 async def test_main():
-    with patch(
-        "builtins.open",
-        mock_open(
-            read_data=json.dumps(
-                {"keywords": mock_keywords, "type": mock_search_type, "extra": False}
-            )
-        ),
-    ):
-        with patch("json.dump") as mock_json_dump:
-            await main()
-            mock_json_dump.assert_called_once()
+    mock_input = '{"keywords": ["test"], "type": "Repositories", "extra": false, "proxies": []}'
+    with patch("builtins.open", mock_open(read_data=mock_input)), \
+         patch("github_crawlee.main.get_valid_proxies", new_callable=AsyncMock, return_value=[]), \
+         patch("github_crawlee.main.gather_proxies", new_callable=AsyncMock, return_value=[]), \
+         patch("github_crawlee.main.process_keywords", new_callable=AsyncMock, return_value={"test": []}), \
+         patch("json.dump") as mock_json_dump:
 
+        from github_crawlee.main import main
+        await main()
 
-if __name__ == "__main__":
-    pytest.main()
+        mock_json_dump.assert_called_once()
