@@ -11,6 +11,7 @@ from urllib import parse
 from typing import Dict, List
 from aiohttp import ClientSession, ClientError, TCPConnector
 
+
 logger = logging.getLogger("CRAWLEE")
 logging.basicConfig(level=logging.INFO)
 
@@ -25,7 +26,7 @@ USER_AGENTS = [
 
 BASE_HEADERS = {
     "User-Agent": random.choice(USER_AGENTS),
-    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Connection": "keep-alive",
 }
 
@@ -40,11 +41,13 @@ async def load_input(filename: str) -> Dict:
 
 
 async def validate_proxy(proxy: str) -> bool:
-    test_url = "https://httpbin.org/ip"
+    test_url = "http://www.gstatic.com/generate_204"
     try:
-        async with aiohttp.ClientSession(proxy=f"http://{proxy}") as session:
-            async with session.get(test_url, timeout=5) as resp:
-                return resp.status == 200
+        async with aiohttp.ClientSession() as session:
+            async with session.get(test_url, proxy=f"http://{proxy}", timeout=5) as resp:
+                if resp.status == 200:
+                    logger.info("Proxy %s is working", proxy)
+                    return True
     except Exception:
         return False
 
@@ -60,7 +63,7 @@ async def gather_proxies() -> List[str]:
         async with aiohttp.ClientSession() as session:
             async with session.get(PROXY_RESOURCE, headers=BASE_HEADERS) as resp:
                 if resp.status == 200:
-                    proxy_list_raw = await resp.text(encoding="latin-1")
+                    proxy_list_raw = await resp.text()
                     proxies = re.findall(
                         r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+\b", proxy_list_raw
                     )
@@ -73,6 +76,7 @@ async def gather_proxies() -> List[str]:
 async def fetch_data(session: ClientSession, keyword: str, search_type: str, extra: bool = False) -> Dict:
     url = parse.urljoin(BASE_URL, "/search")
     params = {"q": keyword, "type": search_type}
+    repo_info = []
 
     try:
         async with session.get(url, params=params, headers=BASE_HEADERS) as resp:
@@ -86,7 +90,7 @@ async def fetch_data(session: ClientSession, keyword: str, search_type: str, ext
                 logger.warning("No repositories found for %s", keyword)
                 return {}
 
-            repo_info = []
+            
             seen_links = set()
             for repo in repo_list:
                 decoded = html.unescape(repo.encode("utf-8").decode("unicode_escape"))
@@ -126,14 +130,14 @@ async def fetch_data(session: ClientSession, keyword: str, search_type: str, ext
                 else:
                     repo_info.append({"url": link})
 
-            return {keyword: repo_info}
+            return repo_info
     except ClientError as e:
         logger.error("Request error for %s: %s", keyword, e)
         return {}
 
 
 async def process_keywords(keywords: List[str], search_type: str, extra: bool, proxies: List[str]) -> Dict:
-    output = {}
+    output = []
 
     async with aiohttp.ClientSession(connector=TCPConnector(ssl=False)) as session:
         tasks = [
@@ -142,7 +146,7 @@ async def process_keywords(keywords: List[str], search_type: str, extra: bool, p
         results = await asyncio.gather(*tasks)
 
         for res in results:
-            output.update(res)
+            output.extend(res)
 
     return output
 
