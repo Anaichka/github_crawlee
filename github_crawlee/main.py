@@ -11,7 +11,6 @@ from urllib import parse
 from typing import Dict, List
 from aiohttp import ClientSession, ClientError, TCPConnector
 
-
 logger = logging.getLogger("CRAWLEE")
 logging.basicConfig(level=logging.INFO)
 
